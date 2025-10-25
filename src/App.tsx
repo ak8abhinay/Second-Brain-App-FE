@@ -1,9 +1,11 @@
 import './App.css'
-import { Dashboard } from './pages/dashboard';
+import { Signup } from "./pages/Signup";
+// import { Dashboard } from './pages/dashboard';
 
 function App() {
-  return 
-    <Dashboard />
+  return <div>    
+    <Signup />
+  </div>
 
 }
 
