@@ -3,6 +3,7 @@ import { ShareIcon } from "../icons/ShareIcon";
 interface CardProps {
   title: string;
   link: string;
+  type: string;
 }
 
 export function Card(props: CardProps) {

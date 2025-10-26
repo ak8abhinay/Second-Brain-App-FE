@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 enum ContentTpe {
   Youtube = "youtube",
@@ -15,9 +17,20 @@ export function  CreateContentModal({open, onClose}) {
   const linkRef = useRef<HTMLInputElement>();
   const [type, setType] = useState("ContentType.Youtube");
 
-  function  addContent() {
+  async function  addContent() {
      const title = titleRef.current?.value
      const link = titleRef.current?.value
+
+     await axios.post(`${BACKEND_URL}/content`, {
+        title,
+        link,
+        type
+     }, {
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+        
+    })
 
   }
 
