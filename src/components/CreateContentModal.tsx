@@ -1,9 +1,26 @@
+import { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
+enum ContentTpe {
+  Youtube = "youtube",
+  Twitter = "twitter"
+}
+
 //controlled component
 export function  CreateContentModal({open, onClose}) {
+
+  const titleRef = useRef<HTMLInputElement>();
+  const linkRef = useRef<HTMLInputElement>();
+  const [type, setType] = useState("ContentType.Youtube");
+
+  function  addContent() {
+     const title = titleRef.current?.value
+     const link = titleRef.current?.value
+
+  }
+
   return <div>
     {open && <div className="w-screen h-screen bg-slate-500 fixed top-0 left-0 opacity-60 flex justify-center">
         <div className="flex flex-col justify-center">
@@ -14,11 +31,24 @@ export function  CreateContentModal({open, onClose}) {
               </div>
             </div>
             <div>
-              <Input placeholder={"Title"}/>
-              <Input placeholder={"Link"}/>
+              <Input ref={titleRef} placeholder={"Title"}/>
+              <Input ref={linkRef} placeholder={"Link"}/>
+            </div>
+            <div>
+              <h1>Type</h1>
+              <div className="flex gap-1 p-3">
+                <Button text="Youtube" variant={type === ContentTpe.Youtube ?
+                  "primary" : "secondary"} onClick={() => {
+                    setType(ContentTpe.Youtube)
+                  }}></Button>
+                <Button text="Twitter" variant={type === ContentTpe.Twitter ?
+                  "primary" : "secondary"} onClick={() => {
+                    setType(ContentTpe.Twitter)
+                  }}></Button>
+              </div>
             </div>
              <div className="flex justify-center">
-                <Button variant="primary" text="Submit" />
+                <Button onClick={addContent} variant="primary" text="Submit" />
              </div>
           </span>  
         </div>  
